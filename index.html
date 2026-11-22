@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sukoon Bites | Good Food, Good Mood - Food Delivery</title>
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍲</text></svg>">
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-dark text-white py-1 px-3 text-center small">
+        <span>🎉 College Student Special: Use code <strong class="text-warning">SUKOON50</strong> for 50% OFF on your first order!</span>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <nav class="navbar navbar-expand-lg sukoon-navbar">
+        <div class="container">
+            <a class="navbar-brand brand-logo" href="index.html">
+                <i class="bi bi-heart-pulse-fill"></i>
+                <div>
+                    Sukoon Bites
+                    <span class="brand-tagline">Good Food, Good Mood.</span>
+                </div>
+            </a>
+
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#sukoonNavbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="sukoonNavbarNav">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html"><i class="bi bi-house-door me-1"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="menu.html"><i class="bi bi-grid me-1"></i> Food Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="orders.html"><i class="bi bi-bag-check me-1"></i> Track Order</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#aboutSection"><i class="bi bi-info-circle me-1"></i> About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contactSection"><i class="bi bi-telephone me-1"></i> Contact</a>
+                    </li>
+                </ul>
+
+                <div class="d-flex align-items-center gap-3">
+                    <!-- Shopping Cart Icon with Badge -->
+                    <a href="cart.html" class="cart-icon-btn" title="View Shopping Cart">
+                        <i class="bi bi-bag-heart fs-5"></i>
+                        <span class="cart-count-badge d-none">0</span>
+                    </a>
+
+                    <!-- User Account / Auth Container (Dynamic via main.js) -->
+                    <div id="navbarAuthContainer">
+                        <div class="d-flex align-items-center gap-2">
+                            <a href="login.html" class="btn btn-outline-danger btn-sm rounded-pill px-3">Log In</a>
+                            <a href="register.html" class="btn btn-danger btn-sm rounded-pill px-3 text-white">Sign Up</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section text-center text-md-start">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-7">
+                        <span class="badge bg-warning text-dark px-3 py-2 rounded-pill fw-bold mb-3 shadow-sm">
+                            <i class="bi bi-geo-alt-fill text-danger me-1"></i> Fast Campus & Hostel Delivery
+                        </span>
+                        <h1 class="hero-title mb-3">Discover Delicious Food Near You</h1>
+                        <p class="hero-subtitle mb-4">
+                            Craving spicy biryani after lectures or late-night cheesy pizza in the hostel? 
+                            Sukoon Bites brings fresh, hygienic comfort food straight to your door with superfast delivery.
+                        </p>
+
+                        <!-- Search Bar Form -->
+                        <form class="hero-search-box mb-4" onsubmit="event.preventDefault(); const val=document.getElementById('homeHeroSearch').value.trim(); window.location.href='menu.html' + (val ? '?search='+encodeURIComponent(val) : '');">
+                            <i class="bi bi-search text-danger fs-5 me-2"></i>
+                            <input type="text" id="homeHeroSearch" placeholder="Search for Biryani, Burger, Pizza, Dosa, Cold Coffee..." autocomplete="off">
+                            <button type="submit" class="btn btn-danger rounded-pill px-4 py-2 text-white fw-semibold">
+                                Search Food
+                            </button>
+                        </form>
+
+                        <!-- Quick Feature Chips -->
+                        <div class="d-flex flex-wrap gap-2">
+                            <div class="hero-feature-chip">
+                                <i class="bi bi-clock-history text-warning"></i> 30 Mins Express
+                            </div>
+                            <div class="hero-feature-chip">
+                                <i class="bi bi-shield-check text-success"></i> 100% Fresh & Hygienic
+                            </div>
+                            <div class="hero-feature-chip">
+                                <i class="bi bi-tag-fill text-info"></i> Pocket-Friendly Student Rates
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5 d-none d-lg-block text-center">
+                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=700&q=80" 
+                             alt="Delicious Food Bowl" class="img-fluid rounded-4 shadow-lg border border-4 border-white" style="max-height: 420px; object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Food Categories Section -->
+        <section class="py-5">
+            <div class="container">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <div>
+                        <h3 class="fw-bold text-dark mb-1">Inspiration for your first order</h3>
+                        <p class="text-muted small mb-0">Browse delicious student favorites by category</p>
+                    </div>
+                    <a href="menu.html" class="btn btn-sm btn-outline-danger rounded-pill px-3 fw-semibold">
+                        View All Menu <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-8 g-3 text-center">
+                    <!-- Category 1: Pizza -->
+                    <div class="col">
+                        <a href="menu.html?category=Pizza" class="category-card">
+                            <div class="category-img-wrap">
+                                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=200&q=80" alt="Pizza">
+                            </div>
+                            <h6 class="category-title">Pizza</h6>
+                        </a>
+                    </div>
+                    <!-- Category 2: Burger -->
+                    <div class="col">
+                        <a href="menu.html?category=Burger" class="category-card">
+                            <div class="category-img-wrap">
+                                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=200&q=80" alt="Burger">
+                            </div>
+                            <h6 class="category-title">Burger</h6>
+                        </a>
+                    </div>
+                    <!-- Category 3: Biryani -->
+                    <div class="col">
+                        <a href="menu.html?category=Biryani" class="category-card">
+                            <div class="category-img-wrap">
+                                <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=200&q=80" alt="Biryani">
+                            </div>
+                            <h6 class="category-title">Biryani</h6>
+                        </a>
+                    </div>
+                    <!-- Category 4: South Indian -->
+                    <div class="col">
+                        <a href="menu.html?category=South+Indian" class="category-card">
+                            <div class="category-img-wrap">
+                                <img src="https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=200&q=80" alt="South Indian">
+                            </div>
+                            <h6 class="category-title">South Indian</h6>
+                        </a>
+                    </div>
+                    <!-- Category 5: Chinese -->
+                    <div class="col">
+                        <a href="menu.html?category=Chinese" class="category-card">
+                            <div class="category-img-wrap">
+                                <img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&w=200&q=80" alt="Chinese">
+                            </div>
+                            <h6 class="category-title">Chinese</h6>
+                        </a>
+                    </div>
+                    <!-- Category 6: Sandwiches -->
+                    <div class="col">
+                        <a href="menu.html?category=Sandwiches" class="category-card">
+                            <div class="category-img-wrap">
+                                <img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=200&q=80" alt="Sandwiches">
+                            </div>
+                            <h6 class="category-title">Sandwiches</h6>
+                        </a>
+                    </div>
+                    <!-- Category 7: Desserts -->
+                    <div class="col">
+                        <a href="menu.html?category=Desserts" class="category-card">
+                            <div class="category-img-wrap">
+                                <img src="https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=200&q=80" alt="Desserts">
+                            </div>
+                            <h6 class="category-title">Desserts</h6>
+                        </a>
+                    </div>
+                    <!-- Category 8: Beverages -->
+                    <div class="col">
+                        <a href="menu.html?category=Beverages" class="category-card">
+                            <div class="category-img-wrap">
+                                <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=200&q=80" alt="Beverages">
+                            </div>
+                            <h6 class="category-title">Beverages</h6>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Popular Dishes Section -->
+        <section class="py-4 bg-white border-top border-bottom">
+            <div class="container">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <div>
+                        <span class="text-danger fw-bold small text-uppercase letter-spacing-1">Top Rated Today</span>
+                        <h3 class="fw-bold text-dark mb-0">Today's Special Bites</h3>
+                    </div>
+                    <a href="menu.html" class="btn btn-outline-danger btn-sm rounded-pill px-3">
+                        Explore Full Menu <i class="bi bi-chevron-right"></i>
+                    </a>
+                </div>
+
+                <!-- Dynamic Special Dishes Row (Populated by Home Script) -->
+                <div class="row g-4" id="homeSpecialFoodsRow">
+                    <!-- Populated dynamically via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Promotional Offer Banner -->
+        <section class="py-5">
+            <div class="container">
+                <div class="promo-banner p-4 p-md-5">
+                    <div class="row align-items-center">
+                        <div class="col-lg-8">
+                            <span class="badge bg-danger text-white px-3 py-2 rounded-pill fw-bold mb-2">LIMITED TIME OFFER</span>
+                            <h2 class="display-6 fw-bold mb-2">Get 50% Flat Off On Your First 3 Orders!</h2>
+                            <p class="text-white-50 mb-4">
+                                Semester exams or project submission night? Don't starve. Apply code at checkout to unlock instant discounts on all your favorite meals.
+                            </p>
+                            <div class="d-flex flex-wrap align-items-center gap-3">
+                                <div>
+                                    <small class="d-block text-white-50 mb-1">Coupon Code:</small>
+                                    <span class="coupon-code-badge">SUKOON50</span>
+                                </div>
+                                <a href="menu.html" class="btn btn-light rounded-pill px-4 py-2 fw-bold text-danger mt-3 mt-sm-0">
+                                    Order Now <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 text-center d-none d-lg-block">
+                            <i class="bi bi-gift text-warning" style="font-size: 7rem; opacity: 0.9;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Campus Partner Restaurants -->
+        <section class="py-4">
+            <div class="container">
+                <div class="mb-4">
+                    <h3 class="fw-bold text-dark mb-1">Top Campus Outlets & Kitchens</h3>
+                    <p class="text-muted small">Hand-picked student-loved food outlets delivering right now</p>
+                </div>
+
+                <div class="row g-4">
+                    <!-- Restaurant 1 -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="restaurant-card">
+                            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=500&q=80" alt="The Biryani Handi" class="restaurant-card-img">
+                            <div class="p-3">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <h6 class="fw-bold mb-0">The Royal Biryani Handi</h6>
+                                    <span class="rating-badge"><i class="bi bi-star-fill text-warning"></i> 4.8</span>
+                                </div>
+                                <p class="text-muted small mb-2">Biryani, Kebabs, Mughlai</p>
+                                <div class="d-flex justify-content-between align-items-center small text-muted border-top pt-2">
+                                    <span><i class="bi bi-clock me-1 text-danger"></i> 25-30 mins</span>
+                                    <span class="fw-semibold text-dark">₹250 for two</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Restaurant 2 -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="restaurant-card">
+                            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=500&q=80" alt="Pizza Hub" class="restaurant-card-img">
+                            <div class="p-3">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <h6 class="fw-bold mb-0">Crust & Cheese Pizzeria</h6>
+                                    <span class="rating-badge"><i class="bi bi-star-fill text-warning"></i> 4.6</span>
+                                </div>
+                                <p class="text-muted small mb-2">Italian, Pizza, Garlic Breads</p>
+                                <div class="d-flex justify-content-between align-items-center small text-muted border-top pt-2">
+                                    <span><i class="bi bi-clock me-1 text-danger"></i> 20-25 mins</span>
+                                    <span class="fw-semibold text-dark">₹300 for two</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Restaurant 3 -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="restaurant-card">
+                            <img src="https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=500&q=80" alt="South Tiffins" class="restaurant-card-img">
+                            <div class="p-3">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <h6 class="fw-bold mb-0">Udupi Sagar Tiffins</h6>
+                                    <span class="rating-badge"><i class="bi bi-star-fill text-warning"></i> 4.7</span>
+                                </div>
+                                <p class="text-muted small mb-2">Dosa, Idli, Sambar Vada</p>
+                                <div class="d-flex justify-content-between align-items-center small text-muted border-top pt-2">
+                                    <span><i class="bi bi-clock me-1 text-danger"></i> 15-20 mins</span>
+                                    <span class="fw-semibold text-dark">₹150 for two</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Restaurant 4 -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="restaurant-card">
+                            <img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&w=500&q=80" alt="Wok & Roll" class="restaurant-card-img">
+                            <div class="p-3">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <h6 class="fw-bold mb-0">Wok & Roll Indo-Chinese</h6>
+                                    <span class="rating-badge"><i class="bi bi-star-fill text-warning"></i> 4.5</span>
+                                </div>
+                                <p class="text-muted small mb-2">Hakka Noodles, Momos, Fried Rice</p>
+                                <div class="d-flex justify-content-between align-items-center small text-muted border-top pt-2">
+                                    <span><i class="bi bi-clock me-1 text-danger"></i> 20-30 mins</span>
+                                    <span class="fw-semibold text-dark">₹200 for two</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Sukoon Bites Section (About Us) -->
+        <section class="py-5 bg-white border-top" id="aboutSection">
+            <div class="container">
+                <div class="text-center max-w-700 mx-auto mb-5">
+                    <span class="text-danger fw-bold small text-uppercase">Why Sukoon Bites?</span>
+                    <h3 class="fw-bold text-dark mt-1">Crafted with Love for Students & Foodies</h3>
+                    <p class="text-muted">
+                        We understand the real hostel struggle: skipped meals, erratic timings, and overpriced canteens. 
+                        Sukoon Bites provides comforting, freshly cooked meals with zero hassle.
+                    </p>
+                </div>
+
+                <div class="row g-4 text-center">
+                    <div class="col-md-4">
+                        <div class="p-4 rounded-4 bg-light h-100 border">
+                            <div class="auth-brand-icon mb-3">
+                                <i class="bi bi-lightning-charge-fill"></i>
+                            </div>
+                            <h5 class="fw-bold text-dark">Superfast Delivery</h5>
+                            <p class="text-muted small mb-0">
+                                Direct route algorithms ensure steaming hot food reaches your hostel gate or doorstep within 30 minutes.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="p-4 rounded-4 bg-light h-100 border">
+                            <div class="auth-brand-icon mb-3">
+                                <i class="bi bi-wallet2"></i>
+                            </div>
+                            <h5 class="fw-bold text-dark">Student-Friendly Prices</h5>
+                            <p class="text-muted small mb-0">
+                                Delicious meals that don't burn a hole in your pocket. Transparent pricing with exclusive student promo codes.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="p-4 rounded-4 bg-light h-100 border">
+                            <div class="auth-brand-icon mb-3">
+                                <i class="bi bi-shield-fill-check"></i>
+                            </div>
+                            <h5 class="fw-bold text-dark">Fresh & Hygienic</h5>
+                            <p class="text-muted small mb-0">
+                                Every kitchen is monitored for food grade quality, clean oils, and touchless sanitized packaging standards.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="py-5 bg-light" id="contactSection">
+            <div class="container">
+                <div class="row g-4 align-items-center">
+                    <div class="col-lg-6">
+                        <span class="text-danger fw-bold small text-uppercase">We are here to help</span>
+                        <h3 class="fw-bold text-dark mb-3">Have a question or feedback?</h3>
+                        <p class="text-muted mb-4">
+                            Whether you need assistance tracking an order or want to partner your food outlet with Sukoon Bites, feel free to reach out.
+                        </p>
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <div class="stat-icon red"><i class="bi bi-geo-alt"></i></div>
+                            <div>
+                                <h6 class="fw-bold mb-0">Campus Location</h6>
+                                <small class="text-muted">Innovation Block, Tech University Food Court, Hyderabad / Bengaluru</small>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <div class="stat-icon green"><i class="bi bi-telephone"></i></div>
+                            <div>
+                                <h6 class="fw-bold mb-0">Customer Support Helpline</h6>
+                                <small class="text-muted">+91 98765 43210 (9:00 AM - 1:00 AM)</small>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="stat-icon blue"><i class="bi bi-envelope"></i></div>
+                            <div>
+                                <h6 class="fw-bold mb-0">Email Support</h6>
+                                <small class="text-muted">support@sukoonbites.com</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="card p-4 border-0 shadow-sm rounded-4">
+                            <h5 class="fw-bold text-dark mb-3">Send Us a Quick Message</h5>
+                            <form onsubmit="event.preventDefault(); showToast('Thank you! Your message has been sent.', 'success'); this.reset();">
+                                <div class="mb-3">
+                                    <label class="form-label small fw-semibold">Your Name</label>
+                                    <input type="text" class="form-control" required placeholder="Enter your name">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label small fw-semibold">Email Address</label>
+                                    <input type="email" class="form-control" required placeholder="name@example.com">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label small fw-semibold">Message / Query</label>
+                                    <textarea class="form-control" rows="3" required placeholder="How can we help you?"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-danger w-100 rounded-pill py-2 fw-semibold">
+                                    Send Message
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="sukoon-footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="brand-logo text-white mb-2">
+                        <i class="bi bi-heart-pulse-fill text-danger"></i> Sukoon Bites
+                    </div>
+                    <p class="small text-white-50 mb-3">
+                        "Good Food, Good Mood." Delivering warmth, taste, and happiness to students and food lovers every single day.
+                    </p>
+                    <div class="d-flex gap-2">
+                        <a href="#" class="footer-social-icon" title="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="footer-social-icon" title="Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="footer-social-icon" title="Twitter / X"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#" class="footer-social-icon" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-6 col-6">
+                    <h6 class="footer-heading">Quick Links</h6>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="menu.html">Food Menu</a></li>
+                        <li><a href="cart.html">Shopping Cart</a></li>
+                        <li><a href="orders.html">Track Order</a></li>
+                        <li><a href="login.html">Sign In / Register</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-6">
+                    <h6 class="footer-heading">Popular Cuisines</h6>
+                    <ul class="footer-links">
+                        <li><a href="menu.html?category=Biryani">Hyderabadi Biryani</a></li>
+                        <li><a href="menu.html?category=Pizza">Cheesy Pizzas</a></li>
+                        <li><a href="menu.html?category=Burger">Crispy Burgers</a></li>
+                        <li><a href="menu.html?category=Chinese">Hakka Noodles</a></li>
+                        <li><a href="menu.html?category=Desserts">Choco Lava Cakes</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="footer-heading">Staff & Admin</h6>
+                    <p class="small text-white-50 mb-2">Authorized kitchen & administrative portal:</p>
+                    <a href="admin/admin-login.html" class="btn btn-outline-light btn-sm rounded-pill px-3 py-1 mb-3">
+                        <i class="bi bi-shield-lock me-1"></i> Admin Portal
+                    </a>
+                    <div class="small text-white-50">
+                        <i class="bi bi-envelope me-1"></i> support@sukoonbites.com<br>
+                        <i class="bi bi-telephone me-1"></i> +91 98765 43210
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center text-white-50">
+                <div>
+                    &copy; 2026 <strong>Sukoon Bites</strong>. Designed & Developed for B.Tech Web Development Project.
+                </div>
+                <div class="mt-2 mt-md-0 small">
+                    Built with HTML5, CSS3, Vanilla JS & Bootstrap 5
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core JS -->
+    <script src="js/main.js"></script>
+
+    <!-- Inline Homepage Featured Foods Loader -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('homeSpecialFoodsRow');
+            if (!container) return;
+
+            // Load top 8 foods from storage
+            const foods = getFoods().slice(0, 8);
+            container.innerHTML = foods.map(food => `
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                    <div class="food-card">
+                        <div class="food-card-img-wrap">
+                            <img src="${food.image}" alt="${food.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80'">
+                            <span class="food-category-tag">${food.category}</span>
+                        </div>
+                        <div class="food-card-body">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                <span class="food-type-icon ${food.veg ? 'veg' : 'non-veg'}" title="${food.veg ? 'Veg' : 'Non-Veg'}"></span>
+                                <span class="rating-badge"><i class="bi bi-star-fill text-warning"></i> ${food.rating || '4.5'}</span>
+                            </div>
+                            <h6 class="food-title">${food.name}</h6>
+                            <p class="food-desc">${food.description}</p>
+                            <div class="food-card-footer">
+                                <span class="food-price">${formatCurrency(food.price)}</span>
+                                <button class="btn btn-sm btn-danger rounded-pill px-3" onclick="addToCart('${food.id}', 1)">
+                                    <i class="bi bi-cart-plus me-1"></i> Add
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | Sukoon Bites</title>
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍲</text></svg>">
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Main Navigation Bar -->
+    <nav class="navbar navbar-expand-lg sukoon-navbar">
+        <div class="container">
+            <a class="navbar-brand brand-logo" href="index.html">
+                <i class="bi bi-heart-pulse-fill"></i>
+                <div>
+                    Sukoon Bites
+                    <span class="brand-tagline">Good Food, Good Mood.</span>
+                </div>
+            </a>
+
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#sukoonNavbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="sukoonNavbarNav">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="menu.html">Food Menu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="orders.html">Track Order</a></li>
+                </ul>
+
+                <div class="d-flex align-items-center gap-3">
+                    <a href="cart.html" class="cart-icon-btn" title="View Shopping Cart">
+                        <i class="bi bi-bag-heart fs-5"></i>
+                        <span class="cart-count-badge d-none">0</span>
+                    </a>
+
+                    <div id="navbarAuthContainer">
+                        <!-- Populated dynamically via main.js -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="py-4">
+        <div class="container">
+            <div class="row g-4">
+                <!-- Left: Profile Summary Card & Navigation -->
+                <div class="col-lg-4">
+                    <div class="card p-4 rounded-4 border shadow-sm bg-white text-center mb-4">
+                        <div class="auth-brand-icon mx-auto mb-3" style="width: 80px; height: 80px; font-size: 2.2rem;">
+                            <i class="bi bi-person-circle"></i>
+                        </div>
+                        <h5 class="fw-bold text-dark mb-1" id="profileHeaderName">Student User</h5>
+                        <p class="text-muted small mb-3" id="profileHeaderEmail">student@example.com</p>
+                        <span class="badge bg-light text-dark border py-2 px-3 rounded-pill mx-auto">
+                            <i class="bi bi-calendar3 me-1"></i> Member since <span id="profileMemberSince">Nov 2026</span>
+                        </span>
+
+                        <hr class="my-4">
+
+                        <!-- Quick Stats -->
+                        <div class="row text-center g-2">
+                            <div class="col-6 border-end">
+                                <span class="fs-4 fw-bold text-dark d-block" id="profileTotalOrders">0</span>
+                                <small class="text-muted">Total Orders</small>
+                            </div>
+                            <div class="col-6">
+                                <span class="fs-4 fw-bold text-danger d-block" id="profileTotalSpent">₹0</span>
+                                <small class="text-muted">Total Spent</small>
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+
+                        <button class="btn btn-outline-danger w-100 rounded-pill py-2" onclick="logoutUser()">
+                            <i class="bi bi-box-arrow-right me-1"></i> Log Out
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right: Edit Profile & Order History -->
+                <div class="col-lg-8">
+                    <!-- Edit Profile Card -->
+                    <div class="card p-4 rounded-4 border shadow-sm bg-white mb-4">
+                        <h5 class="fw-bold text-dark mb-3">
+                            <i class="bi bi-pencil-square text-danger me-2"></i>Personal Details
+                        </h5>
+
+                        <form id="profileForm">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-semibold">Full Name</label>
+                                    <input type="text" id="profileName" class="form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-semibold">Email Address (Read-only)</label>
+                                    <input type="email" id="profileEmail" class="form-control bg-light" readonly>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-semibold">Mobile Number</label>
+                                    <input type="tel" id="profilePhone" class="form-control" required maxlength="10">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-semibold">Saved Campus / Hostel Address</label>
+                                    <input type="text" id="profileAddress" class="form-control" placeholder="Room No, Hostel Name, Campus">
+                                </div>
+                                <div class="col-12 text-end mt-4">
+                                    <button type="submit" class="btn btn-danger rounded-pill px-4 fw-semibold">
+                                        Save Changes
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- User Order History Summary -->
+                    <div class="card p-4 rounded-4 border shadow-sm bg-white">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h5 class="fw-bold text-dark mb-0">
+                                <i class="bi bi-bag-check-fill text-danger me-2"></i>Recent Orders
+                            </h5>
+                            <a href="orders.html" class="btn btn-sm btn-outline-danger rounded-pill px-3">View All</a>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Order ID</th>
+                                        <th>Date</th>
+                                        <th>Items</th>
+                                        <th>Total</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="profileOrdersTableBody">
+                                    <!-- Populated dynamically via auth.js -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="sukoon-footer">
+        <div class="container text-center text-white-50">
+            <p class="mb-1">&copy; 2026 Sukoon Bites. College Frontend Web Development Project.</p>
+            <small>Built with HTML5, CSS3, Vanilla JavaScript, Bootstrap 5 & LocalStorage</small>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core JS -->
+    <script src="js/main.js"></script>
+    <!-- Auth JS -->
+    <script src="js/auth.js"></script>
+</body>
+</html>

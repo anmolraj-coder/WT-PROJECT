@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Order & Order History | Sukoon Bites</title>
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍲</text></svg>">
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Main Navigation Bar -->
+    <nav class="navbar navbar-expand-lg sukoon-navbar">
+        <div class="container">
+            <a class="navbar-brand brand-logo" href="index.html">
+                <i class="bi bi-heart-pulse-fill"></i>
+                <div>
+                    Sukoon Bites
+                    <span class="brand-tagline">Good Food, Good Mood.</span>
+                </div>
+            </a>
+
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#sukoonNavbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="sukoonNavbarNav">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="bi bi-house-door me-1"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="menu.html"><i class="bi bi-grid me-1"></i> Food Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="orders.html"><i class="bi bi-bag-check me-1"></i> Track Order</a>
+                    </li>
+                </ul>
+
+                <div class="d-flex align-items-center gap-3">
+                    <a href="cart.html" class="cart-icon-btn" title="View Shopping Cart">
+                        <i class="bi bi-bag-heart fs-5"></i>
+                        <span class="cart-count-badge d-none">0</span>
+                    </a>
+
+                    <div id="navbarAuthContainer">
+                        <div class="d-flex align-items-center gap-2">
+                            <a href="login.html" class="btn btn-outline-danger btn-sm rounded-pill px-3">Log In</a>
+                            <a href="register.html" class="btn btn-danger btn-sm rounded-pill px-3 text-white">Sign Up</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="py-4">
+        <div class="container">
+            <!-- Breadcrumbs -->
+            <nav aria-label="breadcrumb" class="mb-3">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-muted">Home</a></li>
+                    <li class="breadcrumb-item active text-danger fw-semibold" aria-current="page">Track Order</li>
+                </ol>
+            </nav>
+
+            <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+                <div>
+                    <h3 class="fw-bold text-dark mb-0">Order Tracking & History</h3>
+                    <p class="text-muted small mb-0">Follow your delicious meal from our kitchen to your doorstep</p>
+                </div>
+                <button class="btn btn-sm btn-outline-danger rounded-pill px-3" onclick="window.location.reload();">
+                    <i class="bi bi-arrow-clockwise"></i> Refresh Status
+                </button>
+            </div>
+
+            <!-- 1. ACTIVE ORDER TRACKER CARD -->
+            <div id="activeTrackingCard" class="card border-0 shadow-sm rounded-4 p-4 p-md-5 mb-5 bg-white">
+                <!-- Populated dynamically via JS -->
+            </div>
+
+            <!-- 2. ALL PREVIOUS ORDERS HISTORY TABLE -->
+            <div class="card border rounded-4 p-4 bg-white shadow-sm">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="fw-bold text-dark mb-0"><i class="bi bi-clock-history text-danger me-2"></i>Past Orders History</h5>
+                    <span id="ordersCountBadge" class="badge bg-light text-dark border">0 Orders</span>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Date & Time</th>
+                                <th>Customer & Address</th>
+                                <th>Items</th>
+                                <th>Total Bill</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ordersHistoryTableBody">
+                            <!-- Populated dynamically by script -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="sukoon-footer">
+        <div class="container text-center text-white-50">
+            <p class="mb-1">&copy; 2026 Sukoon Bites. College Frontend Web Development Project.</p>
+            <small>Built with HTML5, CSS3, Vanilla JavaScript, Bootstrap 5 & LocalStorage</small>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core JS -->
+    <script src="js/main.js"></script>
+
+    <!-- Orders Page Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            renderOrdersPage();
+        });
+
+        function renderOrdersPage() {
+            const orders = getOrders();
+            const urlParams = new URLSearchParams(window.location.search);
+            const requestedId = urlParams.get('id');
+
+            // Find current active order: requested via URL or latest order
+            let activeOrder = null;
+            if (requestedId) {
+                activeOrder = orders.find(o => o.id.toLowerCase() === requestedId.toLowerCase());
+            }
+            if (!activeOrder && orders.length > 0) {
+                activeOrder = orders[0];
+            }
+
+            renderActiveTracker(activeOrder);
+            renderOrdersHistory(orders, activeOrder ? activeOrder.id : null);
+        }
+
+        // Render Active Stepper Card
+        function renderActiveTracker(order) {
+            const card = document.getElementById('activeTrackingCard');
+            if (!card) return;
+
+            if (!order) {
+                card.innerHTML = `
+                    <div class="text-center py-4">
+                        <i class="bi bi-bag-x text-muted" style="font-size: 3.5rem;"></i>
+                        <h4 class="mt-3 fw-bold">No Active Order Found</h4>
+                        <p class="text-muted">Place an order from our menu to track its real-time progress.</p>
+                        <a href="menu.html" class="btn btn-danger rounded-pill px-4">Browse Menu</a>
+                    </div>
+                `;
+                return;
+            }
+
+            // Stepper milestone states
+            const statusList = ['Order Placed', 'Preparing', 'Out for Delivery', 'Delivered'];
+            const currentIndex = statusList.indexOf(order.status);
+            const isCancelled = order.status === 'Cancelled';
+
+            // Calculate progress bar width
+            let progressPercent = 0;
+            if (currentIndex === 0) progressPercent = 0;
+            else if (currentIndex === 1) progressPercent = 33;
+            else if (currentIndex === 2) progressPercent = 66;
+            else if (currentIndex === 3) progressPercent = 100;
+
+            card.innerHTML = `
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 pb-3 border-bottom">
+                    <div>
+                        <span class="badge bg-danger-subtle text-danger px-3 py-1 rounded-pill fw-bold mb-1">LIVE ORDER TRACKING</span>
+                        <h4 class="fw-bold text-dark mb-0">Order #${order.id}</h4>
+                        <small class="text-muted">Placed on: ${order.orderTime || 'Just now'} | Payment: <strong>${order.paymentMethod}</strong></small>
+                    </div>
+                    <div class="text-end">
+                        <span class="badge ${order.status === 'Delivered' ? 'bg-success' : (isCancelled ? 'bg-danger' : 'bg-warning text-dark')} px-3 py-2 fs-6 rounded-pill">
+                            ${order.status}
+                        </span>
+                    </div>
+                </div>
+
+                ${isCancelled ? `
+                    <div class="alert alert-danger my-4 rounded-3 text-center">
+                        <i class="bi bi-x-circle-fill fs-4 me-2"></i> This order was cancelled. Please contact support or place a new order.
+                    </div>
+                ` : `
+                    <!-- 4-Step Progress Stepper -->
+                    <div class="order-tracking-stepper position-relative my-5">
+                        <div class="order-tracking-progress" style="width: ${progressPercent}%;"></div>
+
+                        <!-- Step 1 -->
+                        <div class="step-node ${currentIndex >= 0 ? (currentIndex === 0 ? 'active' : 'completed') : ''}">
+                            <div class="step-icon">
+                                <i class="bi ${currentIndex > 0 ? 'bi-check-lg' : 'bi-receipt'}"></i>
+                            </div>
+                            <span class="step-label d-block">Order Placed</span>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div class="step-node ${currentIndex >= 1 ? (currentIndex === 1 ? 'active' : 'completed') : ''}">
+                            <div class="step-icon">
+                                <i class="bi ${currentIndex > 1 ? 'bi-check-lg' : 'bi-fire'}"></i>
+                            </div>
+                            <span class="step-label d-block">Preparing</span>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="step-node ${currentIndex >= 2 ? (currentIndex === 2 ? 'active' : 'completed') : ''}">
+                            <div class="step-icon">
+                                <i class="bi ${currentIndex > 2 ? 'bi-check-lg' : 'bi-bicycle'}"></i>
+                            </div>
+                            <span class="step-label d-block">Out for Delivery</span>
+                        </div>
+
+                        <!-- Step 4 -->
+                        <div class="step-node ${currentIndex >= 3 ? 'active completed' : ''}">
+                            <div class="step-icon">
+                                <i class="bi bi-house-check"></i>
+                            </div>
+                            <span class="step-label d-block">Delivered</span>
+                        </div>
+                    </div>
+                `}
+
+                <div class="row g-4 mt-2">
+                    <div class="col-md-6 border-end">
+                        <h6 class="fw-bold text-dark mb-3"><i class="bi bi-geo-alt text-danger me-1"></i> Delivery Information</h6>
+                        <p class="mb-1"><strong>Recipient:</strong> ${order.customerName}</p>
+                        <p class="mb-1"><strong>Phone:</strong> ${order.customerPhone}</p>
+                        <p class="mb-1"><strong>Address:</strong> ${order.address}</p>
+                        ${order.deliveryNotes ? `<p class="mb-0 text-muted small"><strong>Notes:</strong> ${order.deliveryNotes}</p>` : ''}
+                    </div>
+
+                    <div class="col-md-6">
+                        <h6 class="fw-bold text-dark mb-3"><i class="bi bi-bag-check text-danger me-1"></i> Ordered Items (${order.items.length})</h6>
+                        <div class="max-h-200 overflow-y-auto mb-3">
+                            ${order.items.map(item => `
+                                <div class="d-flex justify-content-between align-items-center py-1 small border-bottom">
+                                    <div>
+                                        <span class="food-type-icon ${item.veg ? 'veg' : 'non-veg'} me-1"></span>
+                                        <span>${item.name}</span>
+                                        <span class="text-muted">x${item.qty}</span>
+                                    </div>
+                                    <span class="fw-semibold">${formatCurrency(item.price * item.qty)}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div class="d-flex justify-content-between fw-bold fs-6">
+                            <span>Total Bill Paid:</span>
+                            <span class="text-danger">${formatCurrency(order.total)}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Render History Table
+        function renderOrdersHistory(orders, activeId) {
+            const tbody = document.getElementById('ordersHistoryTableBody');
+            const countBadge = document.getElementById('ordersCountBadge');
+            if (!tbody) return;
+
+            if (countBadge) countBadge.textContent = `${orders.length} Orders`;
+
+            if (orders.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" class="text-center py-4 text-muted">No orders found in history.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = orders.map(order => `
+                <tr class="${order.id === activeId ? 'table-danger-subtle' : ''}">
+                    <td><strong>${order.id}</strong></td>
+                    <td><small class="text-muted">${order.orderTime || 'Recent'}</small></td>
+                    <td>
+                        <span class="fw-semibold">${order.customerName}</span><br>
+                        <small class="text-muted text-truncate d-inline-block" style="max-width: 180px;">${order.address}</small>
+                    </td>
+                    <td>${order.items.length} items</td>
+                    <td><strong>${formatCurrency(order.total)}</strong></td>
+                    <td>
+                        <span class="badge ${order.status === 'Delivered' ? 'bg-success' : 'bg-warning text-dark'}">${order.status}</span>
+                    </td>
+                    <td>
+                        <div class="d-flex gap-1">
+                            <a href="orders.html?id=${order.id}" class="btn btn-sm btn-outline-danger py-0 px-2">
+                                <i class="bi bi-geo"></i> Track
+                            </a>
+                            <button class="btn btn-sm btn-light border py-0 px-2" onclick="reorderItems('${order.id}')" title="Reorder dishes">
+                                <i class="bi bi-arrow-repeat"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // Reorder helper: adds all items of an order to current cart
+        function reorderItems(orderId) {
+            const orders = getOrders();
+            const order = orders.find(o => o.id === orderId);
+            if (!order) return;
+
+            let cart = getCart();
+            order.items.forEach(item => {
+                const existing = cart.find(c => c.id === item.id);
+                if (existing) {
+                    existing.qty += item.qty;
+                } else {
+                    cart.push({ ...item });
+                }
+            });
+            setCart(cart);
+            showToast(`Added ${order.items.length} items from #${order.id} to your cart!`, "success");
+            setTimeout(() => {
+                window.location.href = "cart.html";
+            }, 800);
+        }
+    </script>
+</body>
+</html>

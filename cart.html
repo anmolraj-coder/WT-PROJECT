@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart | Sukoon Bites</title>
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍲</text></svg>">
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Main Navigation Bar -->
+    <nav class="navbar navbar-expand-lg sukoon-navbar">
+        <div class="container">
+            <a class="navbar-brand brand-logo" href="index.html">
+                <i class="bi bi-heart-pulse-fill"></i>
+                <div>
+                    Sukoon Bites
+                    <span class="brand-tagline">Good Food, Good Mood.</span>
+                </div>
+            </a>
+
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#sukoonNavbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="sukoonNavbarNav">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="bi bi-house-door me-1"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="menu.html"><i class="bi bi-grid me-1"></i> Food Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="orders.html"><i class="bi bi-bag-check me-1"></i> Track Order</a>
+                    </li>
+                </ul>
+
+                <div class="d-flex align-items-center gap-3">
+                    <a href="cart.html" class="cart-icon-btn active" title="View Shopping Cart">
+                        <i class="bi bi-bag-heart-fill fs-5 text-danger"></i>
+                        <span class="cart-count-badge d-none">0</span>
+                    </a>
+
+                    <div id="navbarAuthContainer">
+                        <div class="d-flex align-items-center gap-2">
+                            <a href="login.html" class="btn btn-outline-danger btn-sm rounded-pill px-3">Log In</a>
+                            <a href="register.html" class="btn btn-danger btn-sm rounded-pill px-3 text-white">Sign Up</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="py-4">
+        <div class="container">
+            <!-- Breadcrumb Navigation -->
+            <nav aria-label="breadcrumb" class="mb-3">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-muted">Home</a></li>
+                    <li class="breadcrumb-item"><a href="menu.html" class="text-muted">Menu</a></li>
+                    <li class="breadcrumb-item active text-danger fw-semibold" aria-current="page">Shopping Cart</li>
+                </ol>
+            </nav>
+
+            <h3 class="fw-bold text-dark mb-4">Your Shopping Cart</h3>
+
+            <!-- 1. EMPTY CART VIEW -->
+            <div id="emptyCartView" class="d-none text-center py-5 bg-white rounded-4 shadow-sm border p-4">
+                <i class="bi bi-cart-x text-muted" style="font-size: 4rem;"></i>
+                <h4 class="mt-3 fw-bold text-dark">Your Cart is Hungry!</h4>
+                <p class="text-muted mb-4 max-w-500 mx-auto">
+                    You haven't added any dishes to your cart yet. Explore our delicious menu of biryanis, pizzas, burgers and desserts.
+                </p>
+                <a href="menu.html" class="btn btn-danger rounded-pill px-4 py-2 fw-semibold">
+                    <i class="bi bi-search me-1"></i> Browse Delicious Food
+                </a>
+            </div>
+
+            <!-- 2. CART CONTENT VIEW -->
+            <div id="cartContentView" class="row g-4">
+                <!-- Left: Items list -->
+                <div class="col-lg-8">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="text-muted fw-semibold small text-uppercase">Items in Cart</span>
+                        <button class="btn btn-sm btn-outline-danger rounded-pill px-3 py-1" onclick="clearEntireCart()">
+                            <i class="bi bi-trash me-1"></i> Clear Cart
+                        </button>
+                    </div>
+
+                    <!-- Items container rendered by cart.js -->
+                    <div id="cartItemsList">
+                        <!-- Populated by cart.js -->
+                    </div>
+
+                    <!-- Free delivery reminder notice -->
+                    <div id="freeDeliveryNotice" class="alert alert-info py-2 px-3 rounded-3 small mb-4">
+                        <i class="bi bi-info-circle me-1"></i> Add items worth ₹299 for FREE delivery!
+                    </div>
+
+                    <!-- Delivery Instructions Card -->
+                    <div class="card p-3 border rounded-3 bg-white mb-4">
+                        <h6 class="fw-bold mb-2"><i class="bi bi-pencil-square text-danger me-1"></i> Delivery Instructions / Hostel Details</h6>
+                        <input type="text" id="cartDeliveryNote" class="form-control form-control-sm" placeholder="e.g. Leave at hostel security desk, call upon arrival, extra oregano...">
+                    </div>
+
+                    <a href="menu.html" class="btn btn-outline-secondary rounded-pill px-4">
+                        <i class="bi bi-arrow-left me-1"></i> Add More Food Items
+                    </a>
+                </div>
+
+                <!-- Right: Order Bill Summary & Coupon -->
+                <div class="col-lg-4">
+                    <!-- Promo Code Box -->
+                    <div class="summary-card mb-3">
+                        <h6 class="fw-bold mb-3"><i class="bi bi-percent text-danger me-1"></i> Apply Promo Coupon</h6>
+                        <div class="input-group mb-2">
+                            <input type="text" id="couponCodeInput" class="form-control text-uppercase" placeholder="Enter coupon code">
+                            <button class="btn btn-danger" type="button" onclick="applyCouponCode()">Apply</button>
+                        </div>
+                        <div class="d-flex flex-wrap gap-2 mt-2">
+                            <span class="badge bg-light text-dark border cursor-pointer" onclick="document.getElementById('couponCodeInput').value='SUKOON50'; applyCouponCode();" style="cursor: pointer;">
+                                SUKOON50 (50% OFF)
+                            </span>
+                            <span class="badge bg-light text-dark border cursor-pointer" onclick="document.getElementById('couponCodeInput').value='STUDENT20'; applyCouponCode();" style="cursor: pointer;">
+                                STUDENT20 (20% OFF)
+                            </span>
+                            <span class="badge bg-light text-dark border cursor-pointer" onclick="document.getElementById('couponCodeInput').value='WELCOME'; applyCouponCode();" style="cursor: pointer;">
+                                WELCOME (Flat ₹40)
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Bill Details -->
+                    <div class="summary-card">
+                        <h6 class="fw-bold mb-3 border-bottom pb-2">Bill Summary</h6>
+                        
+                        <div class="summary-row">
+                            <span class="text-muted">Item Subtotal</span>
+                            <span id="summarySubtotal" class="fw-semibold">₹0</span>
+                        </div>
+
+                        <div class="summary-row">
+                            <span class="text-muted">Delivery Charges</span>
+                            <span id="summaryDelivery" class="fw-semibold">₹40</span>
+                        </div>
+
+                        <div class="summary-row">
+                            <span class="text-muted">Govt Taxes & Charges (5% GST)</span>
+                            <span id="summaryTax" class="fw-semibold">₹0</span>
+                        </div>
+
+                        <div class="summary-row d-none text-success fw-semibold" id="summaryDiscountRow">
+                            <span>Coupon Discount</span>
+                            <span id="summaryDiscount">- ₹0</span>
+                        </div>
+
+                        <div class="summary-row summary-total mt-2">
+                            <span>Grand Total</span>
+                            <span id="summaryGrandTotal">₹0</span>
+                        </div>
+
+                        <a href="checkout.html" class="btn btn-danger w-100 rounded-pill py-2 mt-3 fw-bold shadow-sm d-flex align-items-center justify-content-center gap-2">
+                            <span>Proceed to Checkout</span>
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+
+                        <div class="text-center mt-3">
+                            <small class="text-muted"><i class="bi bi-shield-check text-success"></i> 100% Safe & Secure Ordering</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="sukoon-footer">
+        <div class="container text-center text-white-50">
+            <p class="mb-1">&copy; 2026 Sukoon Bites. College Frontend Web Development Project.</p>
+            <small>Built with HTML5, CSS3, Vanilla JavaScript, Bootstrap 5 & LocalStorage</small>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core JS -->
+    <script src="js/main.js"></script>
+    <!-- Cart JS -->
+    <script src="js/cart.js"></script>
+</body>
+</html>
